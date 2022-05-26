@@ -3,7 +3,7 @@ A Python module for manipulating parts of a string that are not surrounded by sp
 ## Features
 * Separate the part surrounded by a specific symbol and the part not surrounded by a character string.
 * Perform a string operation (replacement, etc.) on the part of the string that is not surrounded by a specific symbol.
-* Check if the string starts or ends with a specific character (s).
+* Checks if a string is surrounded by multiple types of strings (can be forward or backward only).
 ## How to use
 1. Import the sstr module
    
@@ -25,22 +25,22 @@ A Python module for manipulating parts of a string that are not surrounded by sp
    
    Example 1: Separate the parts surrounded and not surrounded by a specific symbol
    ```
-   divided_data = new_string.divide('"')  # (sep)
+   divided_data = new_string.divide(enclosure='"')  # (enclosure)
    print(divided_data)  # ['This is a ', '"test"', '.']
    print(type(divided_data[0]))  # <class 'str'>
    ```
    Example 2: Replace the characters in the part not surrounded by a specific symbol
    ```
-   edited_string = new_string.sreplace('"', 's', '#')  # (sep, __old, __new)
+   edited_string = new_string.sreplace('s', '#', enclosure='"')  # (__old, __new, enclosure)
    print(edited_string)  # Thi# i# a "test".
    print(type(edited_string))  # <class 'str'>
    ```
    Example 3: Count the number of "s" in the part not surrounded by a specific symbol (when the surrounding symbols are different before and after)
    ```
    new_string = sstr('This is a "test". This is also a (test).')
-   # quantity = new_string.scount('"', 's')  # (sep, x)
-   # quantity = new_string.scount([['(', ')']], 's')  # (sep, x)
-   quantity = new_string.scount(['"', ['(', ')']], 's')  # (sep, x)
+   # quantity = new_string.scount('s', enclosure='"')  # (x, enclosure)
+   # quantity = new_string.scount('s', enclosure=[['(', ')']])  # (x, enclosure)
+   quantity = new_string.scount('s', enclosure=['"', ['(', ')']])  # (x, enclosure)
    print(quantity)  # 5
    print(type(quantity))  # <class 'int'>
    ```
